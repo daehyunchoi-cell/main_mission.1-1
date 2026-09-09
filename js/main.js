@@ -621,6 +621,8 @@ FIELD_NAMES.forEach((fieldName) => {
     input.addEventListener('blur', handleFieldBlur);
 });
 
+contactForm.addEventListener('submit', handleFormSubmit);
+
 document.querySelectorAll('main section[id]').forEach((section) => {
     sectionObserver.observe(section);
 });
