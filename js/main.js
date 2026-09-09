@@ -551,6 +551,7 @@ function handleFieldBlur(event) {
 }
 
 async function handleFormSubmit(event) {
+    console.log('폼 제출 함수 실행됨!');
     event.preventDefault();
 
     const results = FIELD_NAMES.map(validateField);
