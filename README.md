@@ -5,7 +5,7 @@ GitHub API로 실제 저장소 목록을 불러오고, 로딩 · 성공 · 에�
 
 ## 배포 URL
 
-- https://daehyunchoi-cell.github.io/portfolio/  ← 배포 후 실제 주소로 교체
+- https://daehyunchoi-cell.github.io/main_mission.1-1/
 
 ---
 
@@ -45,7 +45,7 @@ GitHub API로 실제 저장소 목록을 불러오고, 로딩 · 성공 · 에�
 ## 폴더 구조와 파일별 역할
 
 ```
-portfolio/
+main_mission.1-1/
 ├── index.html          # 문서 구조 + 테마 초기화 스크립트(인라인)
 ├── css/
 │   └── style.css       # 디자인 토큰 → 컴포넌트 → 미디어쿼리 순의 단일 스타일시트
@@ -471,10 +471,10 @@ cd portfolio
 
 ## 배포 방법 (GitHub Pages)
 
-1. GitHub에 `portfolio` 저장소를 만들고 푸시합니다.
+1. GitHub에 `main_mission.1-1` 저장소를 만들고 푸시합니다.
 2. 저장소 **Settings → Pages** 로 이동합니다.
 3. **Source**를 `Deploy from a branch`, **Branch**를 `main` / `/ (root)`로 설정하고 저장합니다.
-4. 1~2분 뒤 `https://<아이디>.github.io/portfolio/`에서 접속할 수 있습니다.
+4. 1~2분 뒤 `https://daehyunchoi-cell.github.io/main_mission.1-1/`에서 접속할 수 있습니다.
 
 ---
 
