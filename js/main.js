@@ -550,8 +550,8 @@ function handleFieldBlur(event) {
     validateField(event.target.id);
 }
 
-function handleFormSubmit(event) {
-    event.preventDefault();   // 페이지 새로고침을 막습니다.
+async function handleFormSubmit(event) {
+    event.preventDefault();
 
     const results = FIELD_NAMES.map(validateField);
     const isValid = results.every(Boolean);
@@ -563,11 +563,34 @@ function handleFormSubmit(event) {
         return;
     }
 
-    // 실제 전송에는 백엔드가 필요합니다. 지금은 성공 상태만 표현합니다.
-    // 서버를 붙이면 이 자리에서 await 후 applyServerErrors(응답)를 호출하면 됩니다.
-    setFormStatus('메시지가 정상적으로 접수되었습니다. 감사합니다!', 'success');
-    contactForm.reset();
-    setState('form', { errors: { name: '', email: '', message: '' } });
+    setFormStatus('전송 중...', '');
+
+    try {
+        const response = await fetch('https://formspree.io/f/xbgjpwvj', {  // ← Formspree 엔드포인트 URL로 교체
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+            body: JSON.stringify({
+                name: document.querySelector('#name').value,
+                email: document.querySelector('#email').value,
+                message: document.querySelector('#message').value
+            })
+        });
+
+        if (!response.ok) {
+            const result = await response.json();
+            const serverErrors = result.errors || {};
+            applyServerErrors(serverErrors);
+            setFormStatus('입력값을 다시 확인해 주세요.', 'error');
+            return;
+        }
+
+        setFormStatus('메시지가 정상적으로 접수되었습니다. 감사합니다!', 'success');
+        contactForm.reset();
+        setState('form', { errors: { name: '', email: '', message: '' } });
+    } catch (error) {
+        setFormStatus('전송에 실패했습니다. 잠시 후 다시 시도해 주세요.', 'error');
+        console.error('Form submission error:', error);
+    }
 }
 
 /* =========================================================
